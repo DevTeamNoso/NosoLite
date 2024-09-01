@@ -18,6 +18,7 @@ type
     Label2: TLabel;
     LabelSplash: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure LabelSplashClick(Sender: TObject);
   private
 
   public
@@ -43,6 +44,11 @@ begin
 MyRegion := CreateEllipticRgn(10, 10, 310, 310);
 SetWindowRgn(Handle, MyRegion, True);
 Label1.Caption:='Nosolite v'+ProgramVersion;
+end;
+
+procedure TForm4.LabelSplashClick(Sender: TObject);
+begin
+
 end;
 
 END. // END UNIT

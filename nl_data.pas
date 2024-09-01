@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, IdTCPClient, dateutils, strutils, formlog,nosotime,
-  nosoconsensus,nosodebug;
+  nosoconsensus,nosodebug,nosonosocfg;
 
 Type
 
@@ -294,6 +294,7 @@ var
   LLine : String = '';
   ActualTime : int64;
   LastRefNodes : int64;
+  NewCFGData : string;
 Begin
 While not terminated do
    begin
@@ -342,7 +343,7 @@ While not terminated do
             FillArrayNodes;
             LastNodesUpdateTime := 0;
             end;
-         G_NosoCFGStr := GetNosoCFGFromNode;
+         //G_NosoCFGStr := GetNosoCFGFromNode;
          end;
       SumReceived := false;
       end;
@@ -354,6 +355,16 @@ While not terminated do
          begin
          UpdatingGVTs := true;
          RunUpdateGVTs();
+         end;
+      end;
+   if Copy(GetCFGHash,1,5) <> Copy(GetConsensus(19),1,5) then
+      begin
+      //ToLog('main','CFG dont match');
+      NewCFGData := GetNosoCFGFromNode;
+      if NewCFGData <> '' then
+         begin
+         SaveCFGToFile(NewCFGData);
+         FillArrayNodes;
          end;
       end;
    //}

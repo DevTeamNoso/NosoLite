@@ -12,7 +12,7 @@ object Form4: TForm4
   OnCreate = FormCreate
   Position = poScreenCenter
   ShowInTaskBar = stAlways
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '3.0.0.3'
   Visible = True
   object Image1: TImage
     Left = 0
@@ -2159,5 +2159,6 @@ object Form4: TForm4
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
+    OnClick = LabelSplashClick
   end
 end

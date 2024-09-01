@@ -24,7 +24,7 @@ function SendOrder(OrderString:String):String;
 var
   Client    : TidTCPClient;
   RanNode   : integer;
-  ThisNode  : NodeData;
+  ThisNode  : String;
   TrysCount : integer = 0;
   WasOk     : Boolean = false;
 Begin
@@ -32,10 +32,9 @@ Result := '';
 Client := TidTCPClient.Create(nil);
 REPEAT
 Inc(TrysCount);
-RanNode := Random(length(ARRAY_Nodes));
-ThisNode := ARRAY_Nodes[RanNode];
-Client.Host:=ThisNode.host;
-Client.Port:=thisnode.port;
+ThisNode := GetRandonNode;
+Client.Host := Parameter(ThisNode,0);
+Client.Port := StrToIntDef(Parameter(ThisNode,1),8080);
 Client.ConnectTimeout:= 3000;
 Client.ReadTimeout:=3000;
 TRY
