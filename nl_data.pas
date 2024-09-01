@@ -145,7 +145,7 @@ CONST
   Comisiontrfr = 10000;
   MinimunFee = 1000000;
   Protocol = 2;
-  ProgramVersion = '1.80';
+  ProgramVersion = '1.90';
 
   HexAlphabet : string = '0123456789ABCDEF';
   B58Alphabet : string = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
@@ -370,7 +370,7 @@ While not terminated do
    //}
    if GetConsensus(2){lastblock}.ToInteger=GetSumaryLastBlock then Wallet_Synced := true
    else Wallet_Synced := false;
-   //if SAVE_Wallet then SaveWallet;
+   if SAVE_Wallet then SaveWallet;
    if REF_Addresses then Synchronize(@UpdateAddresses);
    while GetLogLine('main',lastlogline) do Synchronize(@UpdateLog);
    Repeat
